@@ -1,0 +1,8 @@
+node_modules
+dist
+.tmp
+dist.zip
+
+!.idea
+.idea/*
+!.idea/runConfigurations
