@@ -2,6 +2,7 @@ node_modules
 dist
 .tmp
 dist.zip
+ __pycache__/
 
 !.idea
 .idea/*
