@@ -1,1 +1,1 @@
-web: gunicorn app:bookingly
+web: gunicorn bookingly
