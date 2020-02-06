@@ -1,1 +1,1 @@
-web: gunicorn app:server-debug.sh
+web: gunicorn app:bookingly
