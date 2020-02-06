@@ -1,1 +1,1 @@
-web: gunicorn bookingly
+web: gunicorn bookingly:app --log-file=-
