@@ -5,6 +5,8 @@ import psycopg2
 parser = ConfigParser()
 parser.read('dev.ini')
 
+connection = None
+
 try:
     DATABASE_URL = parser.get('db', 'DATABASE_URL')
 
@@ -12,6 +14,8 @@ try:
 
     if mode != 'development':
         DATABASE_URL = os.environ.get('DATABASE_URL', None)
+
+    print('Database URL:' + DATABASE_URL)
 
     connection = psycopg2.connect(DATABASE_URL)
 
@@ -27,7 +31,7 @@ try:
 except (Exception, psycopg2.Error) as error:
     print("Error while connecting to PostgreSQL", error)
 finally:
-    if (connection):
+    if connection:
         cursor.close()
         connection.close()
         print("PostgreSQL connection is closed")
