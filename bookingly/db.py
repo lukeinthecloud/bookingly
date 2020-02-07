@@ -1,7 +1,9 @@
 from configparser import ConfigParser
+import os
 import psycopg2
 
 parser = ConfigParser()
+parser.read(os.path.join(os.path.dirname(__file__), r"dev.ini"))
 parser.read('dev.ini')
 
 db_config = {
