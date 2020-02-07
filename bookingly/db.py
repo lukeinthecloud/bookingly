@@ -1,25 +1,14 @@
 from configparser import ConfigParser
+from boto.s3.connection import S3Connection
 import os
 import psycopg2
 
-parser = ConfigParser()
-parser.read(os.path.join(os.path.dirname(__file__), r"dev.ini"))
-parser.read('dev.ini')
+DATABASE_URL = S3Connection(os.environ['DATABASE_URL'])
 
-db_config = {
-    'user': parser.get('db', 'db_user'),
-    'password': parser.get('db', 'db_password'),
-    'host': parser.get('db', 'db_host'),
-    'port': parser.get('db', 'db_port'),
-    'database': parser.get('db', 'db_database')
-}
+print(DATABASE_URL)
 
 try:
-    connection = psycopg2.connect(user=db_config['user'],
-                                  password=db_config['password'],
-                                  host=db_config['host'],
-                                  port=db_config['port'],
-                                  database=db_config['database'])
+    connection = psycopg2.connect(DATABASE_URL)
 
     cursor = connection.cursor()
 

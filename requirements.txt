@@ -1,6 +1,7 @@
 astroid==2.3.3
 autopep8==1.4.4
--e git+https://github.com/lukeinthecloud/bookingly.git@6bbb64125374e7008fe4805b20b438789345911d#egg=bookingly
+-e git+https://github.com/lukeinthecloud/bookingly.git@14f32a1da0ece404a9ec352a6b3bda13502bfc93#egg=bookingly
+boto==2.49.0
 certifi==2019.11.28
 Click==7.0
 colorama==0.4.3
