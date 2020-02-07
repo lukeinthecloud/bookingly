@@ -1,9 +1,17 @@
+from configparser import ConfigParser
 import os
 import psycopg2
 
+parser = ConfigParser()
+parser.read('dev.ini')
+
 try:
-    DATABASE_URL = os.environ.get('DATABASE_URL', None)
-    print(DATABASE_URL)
+    DATABASE_URL = parser.get('db', 'DATABASE_URL')
+
+    mode = os.environ.get('FLASK_ENV', None)
+
+    if mode != 'development':
+        DATABASE_URL = os.environ.get('DATABASE_URL', None)
 
     connection = psycopg2.connect(DATABASE_URL)
 
@@ -13,6 +21,7 @@ try:
 
     cursor.execute("SELECT version();")
     record = cursor.fetchone()
+
     print("You are connected to - ", record, "\n")
 
 except (Exception, psycopg2.Error) as error:
