@@ -8,11 +8,11 @@ parser.read('dev.ini')
 connection = None
 
 try:
-    DATABASE_URL = parser.get('db', 'DATABASE_URL')
-
     mode = os.environ.get('FLASK_ENV', None)
 
-    if mode != 'development':
+    if mode == 'development':
+        DATABASE_URL = parser.get('db', 'DATABASE_URL')
+    else:
         DATABASE_URL = os.environ.get('DATABASE_URL', None)
 
     print('Database URL:' + DATABASE_URL)
