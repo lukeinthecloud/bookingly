@@ -1,4 +1,4 @@
-from bookingly import app
+from bookingly.server import app
 
 
 @app.route('/')
