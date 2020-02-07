@@ -1,15 +1,23 @@
+from configparser import ConfigParser
 import psycopg2
-import configparser
 
-config = configparser.ConfigParser()
-config.read('../config-development.ini')
+parser = ConfigParser()
+parser.read('dev.ini')
+
+db_config = {
+    'user': parser.get('db', 'db_user'),
+    'password': parser.get('db', 'db_password'),
+    'host': parser.get('db', 'db_host'),
+    'port': parser.get('db', 'db_port'),
+    'database': parser.get('db', 'db_database')
+}
 
 try:
-    connection = psycopg2.connect(user=config['db']['db_user'],
-                                  password=config['db']['db_password'],
-                                  host=config['db']['db_host'],
-                                  port=config['db']['db_port'],
-                                  database=config['db']['db_database'])
+    connection = psycopg2.connect(user=db_config['user'],
+                                  password=db_config['password'],
+                                  host=db_config['host'],
+                                  port=db_config['port'],
+                                  database=db_config['database'])
 
     cursor = connection.cursor()
 
